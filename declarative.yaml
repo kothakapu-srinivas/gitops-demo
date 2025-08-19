@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: declarative-option
+spec:
+  project: default
+  source:
+    repoURL: https://githu.b.com/kothakapu-srinvas/gitops-demo.git
+    targetRevision: HEAD
+    path: ./apps/nginx
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
